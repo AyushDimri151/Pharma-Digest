@@ -1,8 +1,13 @@
-from dotenv import load_dotenv
-load_dotenv()
 import feedparser
 import os
-import resend # We'll use Resend as it's very dev-friendly and has a great free tier
+import resend
+
+# This part allows it to work locally but skip safely on GitHub
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 # 1. Configuration
 RSS_FEEDS = {
