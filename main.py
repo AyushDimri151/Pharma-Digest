@@ -1,13 +1,19 @@
-import feedparser
 import os
+import feedparser
 import resend
 
-# This part allows it to work locally but skip safely on GitHub
+# Try to load local environment variables if the library exists
 try:
     from dotenv import load_dotenv
     load_dotenv()
+    print("Loaded local .env file")
 except ImportError:
-    pass
+    print("python-dotenv not found; relying on system environment variables")
+
+# Debugging: This will help you see if keys are actually loading in GitHub Actions
+api_key = os.getenv("RESEND_API_KEY")
+if not api_key:
+    print("ERROR: RESEND_API_KEY is not set!")
 
 # 1. Configuration
 RSS_FEEDS = {
