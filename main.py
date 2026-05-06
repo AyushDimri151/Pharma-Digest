@@ -2,13 +2,14 @@ import os
 import feedparser
 import resend
 
-# Try to load local environment variables if the library exists
+# This looks for the library locally, but won't crash on GitHub if it's missing
 try:
     from dotenv import load_dotenv
     load_dotenv()
-    print("Loaded local .env file")
 except ImportError:
-    print("python-dotenv not found; relying on system environment variables")
+    pass 
+
+# The rest of your script follows...
 
 # Debugging: This will help you see if keys are actually loading in GitHub Actions
 api_key = os.getenv("RESEND_API_KEY")
