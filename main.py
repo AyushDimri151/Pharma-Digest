@@ -59,6 +59,7 @@ def send_email(content):
         "html": content,
     }
 
+
     resend.Emails.send(params)
     print("Digest sent successfully.")
 
