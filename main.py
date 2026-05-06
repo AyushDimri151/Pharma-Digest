@@ -3,11 +3,6 @@ import feedparser
 import resend
 
 # This looks for the library locally, but won't crash on GitHub if it's missing
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass 
 
 # The rest of your script follows...
 

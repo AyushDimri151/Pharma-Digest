@@ -1,3 +1,2 @@
 feedparser
 resend
-python-dotenv
