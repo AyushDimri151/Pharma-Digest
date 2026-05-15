@@ -13,7 +13,7 @@ if not api_key:
 
 # 1. Configuration
 RSS_FEEDS = {
-    "PMLive": "https://www.pmlive.com/rss/pharma_news",
+    "Fierce Pharma": "https://www.fiercepharma.com/rss.xml",
     "FDA Press": "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml",
     "Endpoints News": "https://endpts.com/feed/"
 }
