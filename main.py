@@ -70,7 +70,7 @@ def generate_digest():
                           Pharma News Digest
                         </h1>
                         <p style="color: #d4e5f7; margin: 5px 0 0 0; font-size: 11px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                          Turning complex documents into insights effortlessly
+                          Stay Informed. Stay Ahead.
                         </p>
                       </td>
                     </tr>
