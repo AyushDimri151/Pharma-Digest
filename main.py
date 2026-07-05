@@ -16,15 +16,12 @@ RSS_FEEDS = {
 }
 
 # --- GITHUB REPOSITORY LOGO INTEGRATION ---
-# This pulls your repository path dynamically from GitHub Actions environment variables
-# Format generated: https://raw.githubusercontent.com/your-username/your-repo-name/main/logo.png
 github_repo = os.getenv("GITHUB_REPOSITORY")
 if github_repo:
     LOGO_URL = f"https://raw.githubusercontent.com/{github_repo}/main/logo.png"
 else:
     # Local fallback for running testing scripts on your computer offline
     LOGO_URL = "https://i.imgur.com/WbZgqZ2.png"
-
 
 # 2. Your Tailored Consulting Keywords
 FILTER_KEYWORDS = [
@@ -40,32 +37,39 @@ FILTER_KEYWORDS = [
 ]
 
 def generate_digest():
-    # 1. Premium Branded Header Wrapper (Light Professional Theme)
+    # 1. Premium Branded Header Wrapper (Light Professional Theme with custom fonts)
     html_content = f"""
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Import DM Serif Display from Google Fonts -->
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+      </style>
     </head>
-    <body style="margin: 0; padding: 0; background-color: #f4f6f8; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; width: 100% !important;">
+    <body style="margin: 0; padding: 0; background-color: #f4f6f8; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; -webkit-font-smoothing: antialiased; width: 100% !important;">
       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f6f8; padding: 40px 10px;">
         <tr>
           <td align="center" valign="top">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 6px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); overflow: hidden;">
               
+              <!-- Branded Corporate Header Band -->
               <tr>
                 <td style="background: linear-gradient(135deg, #0f4c81 0%, #1d70b8 100%); padding: 25px 30px;">
                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
+                      <!-- Left Aligned Logo (Blended into Background via Raw GitHub CDN) -->
                       <td valign="middle" style="width: 50px;">
                         <img src="{LOGO_URL}" alt="Logo" width="42" height="42" style="display: block; border: 0; max-width: 100%; height: auto;">
                       </td>
+                      <!-- Right Aligned Action Title using DM Serif Display -->
                       <td valign="middle" align="right" style="padding-left: 15px;">
-                        <h1 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; line-height: 1.2; font-family: 'Helvetica Neue', Arial, sans-serif;">
+                        <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -0.3px; line-height: 1.2; font-family: 'DM Serif Display', Georgia, serif;">
                           Pharma News Digest
                         </h1>
-                        <p style="color: #d4e5f7; margin: 3px 0 0 0; font-size: 12px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase;">
+                        <p style="color: #d4e5f7; margin: 5px 0 0 0; font-size: 11px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                           Turning complex documents into insights effortlessly
                         </p>
                       </td>
@@ -74,6 +78,7 @@ def generate_digest():
                 </td>
               </tr>
               
+              <!-- Content Section -->
               <tr>
                 <td style="padding: 35px 30px 15px 30px;">
     """
@@ -124,18 +129,18 @@ def generate_digest():
                 # Format index numbers with elegant leading zeros (01, 02...)
                 display_num = f"{article_counter:02d}"
                 
-                # Light Clean Economic Times layout pattern
+                # Light Clean Economic Times layout pattern with Segoe UI typography
                 html_content += f"""
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px; border-bottom: 1px solid #edf2f7; padding-bottom: 25px;">
                     <tr>
-                        <td valign="top" style="width: 40px; font-size: 22px; font-weight: 700; color: #1d70b8; font-family: Georgia, serif; line-height: 1;">
+                        <td valign="top" style="width: 40px; font-size: 22px; font-weight: 700; color: #1d70b8; font-family: 'DM Serif Display', Georgia, serif; line-height: 1;">
                             {display_num}
                         </td>
                         <td valign="top" style="padding-left: 5px;">
-                            <a href="{link}" target="_blank" style="font-weight: 600; font-size: 16px; color: #1a202c; text-decoration: none; line-height: 1.4; display: block; margin-bottom: 8px;">
+                            <a href="{link}" target="_blank" style="font-weight: 600; font-size: 16px; color: #1a202c; text-decoration: none; line-height: 1.4; display: block; margin-bottom: 8px; font-family: 'Segoe UI', Arial, sans-serif;">
                                 {title}
                             </a>
-                            <p style="font-size: 14px; color: #4a5568; margin: 0; line-height: 1.6; text-align: justify;">
+                            <p style="font-size: 14px; color: #4a5568; margin: 0; line-height: 1.6; text-align: justify; font-family: 'Segoe UI', Arial, sans-serif;">
                                 {clean_summary}
                             </p>
                         </td>
@@ -150,7 +155,7 @@ def generate_digest():
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px;">
             <tr>
                 <td style="padding: 20px; border-left: 4px solid #1d70b8; background-color: #f0f7fd; border-radius: 4px;">
-                    <p style="color: #1d70b8; font-size: 14px; margin: 0; font-weight: 500;">
+                    <p style="color: #1d70b8; font-size: 14px; margin: 0; font-weight: 500; font-family: 'Segoe UI', Arial, sans-serif;">
                         No industry updates matched your target tracking sectors today.
                     </p>
                 </td>
@@ -164,10 +169,10 @@ def generate_digest():
               </tr>
               <tr>
                 <td style="background-color: #fafbfe; padding: 30px 30px; border-top: 1px solid #edf2f7; text-align: center;">
-                  <p style="color: #718096; font-size: 12px; line-height: 1.6; margin: 0 0 6px 0;">
+                  <p style="color: #718096; font-size: 12px; line-height: 1.6; margin: 0 0 6px 0; font-family: 'Segoe UI', Arial, sans-serif;">
                     This automated intelligence brief is built specifically for your executive partners using your core matching engine.
                   </p>
-                  <p style="color: #a0aec0; font-size: 11px; margin: 0; letter-spacing: 0.3px;">
+                  <p style="color: #a0aec0; font-size: 11px; margin: 0; letter-spacing: 0.3px; font-family: 'Segoe UI', Arial, sans-serif;">
                     © 2026 Procurement & Business Strategy Operations. All rights reserved.
                   </p>
                 </td>
