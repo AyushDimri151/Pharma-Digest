@@ -44,7 +44,6 @@ def generate_digest():
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- Import DM Serif Display from Google Fonts -->
       <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
       </style>
@@ -55,16 +54,13 @@ def generate_digest():
           <td align="center" valign="top">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 6px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); overflow: hidden;">
               
-              <!-- Branded Corporate Header Band using #00196e -->
               <tr>
                 <td style="background-color: #00196e; padding: 25px 30px;">
                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
-                      <!-- Left Aligned Logo (Blended into Background via Raw GitHub CDN) -->
                       <td valign="middle" style="width: 50px;">
                         <img src="{LOGO_URL}" alt="Logo" width="42" height="42" style="display: block; border: 0; max-width: 100%; height: auto;">
                       </td>
-                      <!-- Right Aligned Action Title using DM Serif Display -->
                       <td valign="middle" align="right" style="padding-left: 15px;">
                         <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -0.3px; line-height: 1.2; font-family: 'DM Serif Display', Georgia, serif;">
                           Pharma News Digest
@@ -78,7 +74,6 @@ def generate_digest():
                 </td>
               </tr>
               
-              <!-- Content Section -->
               <tr>
                 <td style="padding: 35px 30px 15px 30px;">
     """
@@ -106,10 +101,10 @@ def generate_digest():
             is_relevant = any(keyword in search_text for keyword in FILTER_KEYWORDS)
             
             if is_relevant:
-                # Enforce minimum 60 words rule
                 words = summary.split()
                 word_count = len(words)
                 
+                # Pad if it's below the threshold target
                 if word_count < 60:
                     padding_text = (
                         " This structured intelligence update tracking pipeline highlights critical shifts within "
@@ -120,9 +115,9 @@ def generate_digest():
                     summary = summary + padding_text
                     words = summary.split()
                 
-                # Cap the output at roughly 100 words to maintain aesthetic symmetry
-                if len(words) > 100:
-                    clean_summary = " ".join(words[:100]) + "..."
+                # STRICT WORD LIMITATION: Force clamp to exactly 60 words maximum
+                if len(words) > 60:
+                    clean_summary = " ".join(words[:60]) + "..."
                 else:
                     clean_summary = summary
                 
