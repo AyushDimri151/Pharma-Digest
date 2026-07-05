@@ -55,9 +55,9 @@ def generate_digest():
           <td align="center" valign="top">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 6px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); overflow: hidden;">
               
-              <!-- Branded Corporate Header Band -->
+              <!-- Branded Corporate Header Band using #00196e -->
               <tr>
-                <td style="background: linear-gradient(135deg, #0f4c81 0%, #1d70b8 100%); padding: 25px 30px;">
+                <td style="background-color: #00196e; padding: 25px 30px;">
                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                       <!-- Left Aligned Logo (Blended into Background via Raw GitHub CDN) -->
@@ -70,7 +70,7 @@ def generate_digest():
                           Pharma News Digest
                         </h1>
                         <p style="color: #d4e5f7; margin: 5px 0 0 0; font-size: 11px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                          Stay Informed. Stay Ahead.
+                          Turning complex documents into insights effortlessly
                         </p>
                       </td>
                     </tr>
@@ -129,11 +129,11 @@ def generate_digest():
                 # Format index numbers with elegant leading zeros (01, 02...)
                 display_num = f"{article_counter:02d}"
                 
-                # Light Clean Economic Times layout pattern with Segoe UI typography
+                # Light Clean Economic Times layout pattern with Segoe UI typography and customized color matching #00196e
                 html_content += f"""
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px; border-bottom: 1px solid #edf2f7; padding-bottom: 25px;">
                     <tr>
-                        <td valign="top" style="width: 40px; font-size: 22px; font-weight: 700; color: #1d70b8; font-family: 'DM Serif Display', Georgia, serif; line-height: 1;">
+                        <td valign="top" style="width: 40px; font-size: 22px; font-weight: 700; color: #00196e; font-family: 'DM Serif Display', Georgia, serif; line-height: 1;">
                             {display_num}
                         </td>
                         <td valign="top" style="padding-left: 5px;">
@@ -154,8 +154,8 @@ def generate_digest():
         html_content += """
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px;">
             <tr>
-                <td style="padding: 20px; border-left: 4px solid #1d70b8; background-color: #f0f7fd; border-radius: 4px;">
-                    <p style="color: #1d70b8; font-size: 14px; margin: 0; font-weight: 500; font-family: 'Segoe UI', Arial, sans-serif;">
+                <td style="padding: 20px; border-left: 4px solid #00196e; background-color: #f0f7fd; border-radius: 4px;">
+                    <p style="color: #00196e; font-size: 14px; margin: 0; font-weight: 500; font-family: 'Segoe UI', Arial, sans-serif;">
                         No industry updates matched your target tracking sectors today.
                     </p>
                 </td>
@@ -163,18 +163,13 @@ def generate_digest():
         </table>
         """
 
-    # 3. Clean Colored Footer Banner (No Logo)
+    # 3. Trimmed Clean Colored Footer Banner using #00196e (No Logo, No Text)
     html_content += """
                 </td>
               </tr>
               <tr>
-                <td style="background: linear-gradient(135deg, #0f4c81 0%, #1d70b8 100%); padding: 25px 30px; text-align: center;">
-                  <p style="color: #ffffff; margin: 0; font-size: 13px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: 0.2px;">
-                    Procurement & Business Strategy Operations
-                  </p>
-                  <p style="color: #d4e5f7; margin: 4px 0 0 0; font-size: 11px; font-weight: 400; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: 0.5px;">
-                    Automated Intelligence Engine • 2026
-                  </p>
+                <td style="background-color: #00196e; padding: 12px 30px; font-size: 0; line-height: 0; height: 12px;">
+                  &nbsp;
                 </td>
               </tr>
             </table>
