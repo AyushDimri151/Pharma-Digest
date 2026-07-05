@@ -15,6 +15,17 @@ RSS_FEEDS = {
     "Endpoints News": "https://endpts.com/feed/"
 }
 
+# --- GITHUB REPOSITORY LOGO INTEGRATION ---
+# This pulls your repository path dynamically from GitHub Actions environment variables
+# Format generated: https://raw.githubusercontent.com/your-username/your-repo-name/main/logo.png
+github_repo = os.getenv("GITHUB_REPOSITORY")
+if github_repo:
+    LOGO_URL = f"https://raw.githubusercontent.com/{github_repo}/main/logo.png"
+else:
+    # Local fallback for running testing scripts on your computer offline
+    LOGO_URL = "https://i.imgur.com/WbZgqZ2.png"
+
+
 # 2. Your Tailored Consulting Keywords
 FILTER_KEYWORDS = [
     # Topics
@@ -29,31 +40,42 @@ FILTER_KEYWORDS = [
 ]
 
 def generate_digest():
-    # 1. Elegant Header Wrapper (Economic Times Style Background)
-    html_content = """
+    # 1. Premium Branded Header Wrapper (Light Professional Theme)
+    html_content = f"""
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="margin: 0; padding: 0; background-color: #111111; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; width: 100% !important;">
-      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #111111; padding: 40px 10px;">
+    <body style="margin: 0; padding: 0; background-color: #f4f6f8; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; width: 100% !important;">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f6f8; padding: 40px 10px;">
         <tr>
           <td align="center" valign="top">
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #1a1a1a; border-radius: 4px; overflow: hidden;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 6px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); overflow: hidden;">
+              
               <tr>
-                <td align="left" style="background-color: #111111; padding: 25px 20px; border-bottom: 1px solid #2d2d2d;">
-                  <h1 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; text-transform: uppercase;">
-                    Daily Pharma Intelligence
-                  </h1>
-                  <p style="color: #888888; margin: 5px 0 0 0; font-size: 13px; font-weight: 400;">
-                    Tailored market tracking & sector snapshots
-                  </p>
+                <td style="background: linear-gradient(135deg, #0f4c81 0%, #1d70b8 100%); padding: 25px 30px;">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td valign="middle" style="width: 50px;">
+                        <img src="{LOGO_URL}" alt="Logo" width="42" height="42" style="display: block; border: 0; max-width: 100%; height: auto;">
+                      </td>
+                      <td valign="middle" align="right" style="padding-left: 15px;">
+                        <h1 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; line-height: 1.2; font-family: 'Helvetica Neue', Arial, sans-serif;">
+                          Pharma News Digest
+                        </h1>
+                        <p style="color: #d4e5f7; margin: 3px 0 0 0; font-size: 12px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase;">
+                          Turning complex documents into insights effortlessly
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
+              
               <tr>
-                <td style="padding: 20px 20px 10px 20px;">
+                <td style="padding: 35px 30px 15px 30px;">
     """
     
     article_counter = 1
@@ -64,7 +86,6 @@ def generate_digest():
         articles_from_source = 0
         
         for entry in feed.entries:
-            # Keep a ceiling per source to maintain diversity
             if articles_from_source >= 4:
                 break
                 
@@ -72,7 +93,7 @@ def generate_digest():
             link = entry.link
             summary = entry.get('summary', '').strip()
             
-            # Clean HTML tags if present in summary
+            # Clean HTML tags out of summary
             if "<" in summary and ">" in summary:
                 summary = re.sub('<[^<]+?>', '', summary)
 
@@ -80,42 +101,41 @@ def generate_digest():
             is_relevant = any(keyword in search_text for keyword in FILTER_KEYWORDS)
             
             if is_relevant:
-                # Count the words in the summary
-                word_count = len(summary.split())
+                # Enforce minimum 60 words rule
+                words = summary.split()
+                word_count = len(words)
                 
-                # ENFORCE MINIMUM 60 WORDS: If it's too short, pad it out with context
                 if word_count < 60:
                     padding_text = (
-                        f" This tracking update highlights critical shifts within the pharmaceutical sector, "
-                        f"specifically impacting industry sectors such as Life Sciences, Pharmaceutical Manufacturers, "
-                        f"and US Government Affairs. This strategic intelligence briefing details ongoing market operational "
-                        f"milestones regarding the primary deployment of: {title}. Further investigation and commercial landscape "
-                        f"evaluation are highly recommended for consulting partnerships monitoring this specific therapeutic space."
+                        " This structured intelligence update tracking pipeline highlights critical shifts within "
+                        "the global pharmaceutical sector, directly impacting essential workflows inside Life Sciences, "
+                        "Regulatory Affairs, and Operational Management. Continuous strategic landscape observation and deep "
+                        "commercial assessment are highly recommended for consulting partnerships reviewing this specific market segment."
                     )
                     summary = summary + padding_text
+                    words = summary.split()
                 
-                # Trim exceptionally long summaries so they stay clean (caps around ~100 words max)
-                words = summary.split()
+                # Cap the output at roughly 100 words to maintain aesthetic symmetry
                 if len(words) > 100:
                     clean_summary = " ".join(words[:100]) + "..."
                 else:
                     clean_summary = summary
                 
-                # Format counter with leading zero for elegant look (01, 02, etc.)
+                # Format index numbers with elegant leading zeros (01, 02...)
                 display_num = f"{article_counter:02d}"
                 
-                # Economic Times layout line item structure
+                # Light Clean Economic Times layout pattern
                 html_content += f"""
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px; border-bottom: 1px solid #2d2d2d; padding-bottom: 20px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px; border-bottom: 1px solid #edf2f7; padding-bottom: 25px;">
                     <tr>
-                        <td valign="top" style="width: 35px; font-size: 20px; font-weight: 700; color: #444444; font-family: Georgia, serif; line-height: 1;">
+                        <td valign="top" style="width: 40px; font-size: 22px; font-weight: 700; color: #1d70b8; font-family: Georgia, serif; line-height: 1;">
                             {display_num}
                         </td>
-                        <td valign="top">
-                            <a href="{link}" target="_blank" style="font-weight: 600; font-size: 16px; color: #ffffff; text-decoration: none; line-height: 1.4; display: block; margin-bottom: 6px;">
+                        <td valign="top" style="padding-left: 5px;">
+                            <a href="{link}" target="_blank" style="font-weight: 600; font-size: 16px; color: #1a202c; text-decoration: none; line-height: 1.4; display: block; margin-bottom: 8px;">
                                 {title}
                             </a>
-                            <p style="font-size: 13px; color: #9aa0a6; margin: 0; line-height: 1.5;">
+                            <p style="font-size: 14px; color: #4a5568; margin: 0; line-height: 1.6; text-align: justify;">
                                 {clean_summary}
                             </p>
                         </td>
@@ -127,24 +147,28 @@ def generate_digest():
         
     if article_counter == 1:
         html_content += """
-        <div style="padding: 15px; border-left: 3px solid #dd6b20; background-color: #2c1a10; margin-bottom: 20px;">
-            <p style="color: #f6ad55; font-size: 14px; margin: 0;">
-                No industry updates matched your target tracking sectors today.
-            </p>
-        </div>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 20px;">
+            <tr>
+                <td style="padding: 20px; border-left: 4px solid #1d70b8; background-color: #f0f7fd; border-radius: 4px;">
+                    <p style="color: #1d70b8; font-size: 14px; margin: 0; font-weight: 500;">
+                        No industry updates matched your target tracking sectors today.
+                    </p>
+                </td>
+            </tr>
+        </table>
         """
 
-    # 3. Footer Section
+    # 3. Light Professional Footer
     html_content += """
                 </td>
               </tr>
               <tr>
-                <td style="background-color: #111111; padding: 25px 20px; border-top: 1px solid #2d2d2d; text-align: center;">
-                  <p style="color: #666666; font-size: 11px; line-height: 1.5; margin: 0 0 5px 0;">
+                <td style="background-color: #fafbfe; padding: 30px 30px; border-top: 1px solid #edf2f7; text-align: center;">
+                  <p style="color: #718096; font-size: 12px; line-height: 1.6; margin: 0 0 6px 0;">
                     This automated intelligence brief is built specifically for your executive partners using your core matching engine.
                   </p>
-                  <p style="color: #444444; font-size: 11px; margin: 0;">
-                    © 2026 Automated Pharma Consulting Intel. All rights reserved.
+                  <p style="color: #a0aec0; font-size: 11px; margin: 0; letter-spacing: 0.3px;">
+                    © 2026 Procurement & Business Strategy Operations. All rights reserved.
                   </p>
                 </td>
               </tr>
