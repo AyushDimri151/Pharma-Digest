@@ -70,7 +70,7 @@ def generate_digest():
                           Pharma News Digest
                         </h1>
                         <p style="color: #d4e5f7; margin: 5px 0 0 0; font-size: 11px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                          Turning complex documents into insights effortlessly
+                          Stay Informed. Stay Ahead.
                         </p>
                       </td>
                     </tr>
@@ -163,17 +163,17 @@ def generate_digest():
         </table>
         """
 
-    # 3. Light Professional Footer
+    # 3. Clean Colored Footer Banner (No Logo)
     html_content += """
                 </td>
               </tr>
               <tr>
-                <td style="background-color: #fafbfe; padding: 30px 30px; border-top: 1px solid #edf2f7; text-align: center;">
-                  <p style="color: #718096; font-size: 12px; line-height: 1.6; margin: 0 0 6px 0; font-family: 'Segoe UI', Arial, sans-serif;">
-                    This automated intelligence brief is built specifically for your executive partners using your core matching engine.
+                <td style="background: linear-gradient(135deg, #0f4c81 0%, #1d70b8 100%); padding: 25px 30px; text-align: center;">
+                  <p style="color: #ffffff; margin: 0; font-size: 13px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: 0.2px;">
+                    Procurement & Business Strategy Operations
                   </p>
-                  <p style="color: #a0aec0; font-size: 11px; margin: 0; letter-spacing: 0.3px; font-family: 'Segoe UI', Arial, sans-serif;">
-                    © 2026 Procurement & Business Strategy Operations. All rights reserved.
+                  <p style="color: #d4e5f7; margin: 4px 0 0 0; font-size: 11px; font-weight: 400; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: 0.5px;">
+                    Automated Intelligence Engine • 2026
                   </p>
                 </td>
               </tr>
